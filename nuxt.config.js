@@ -14,21 +14,32 @@ export default {
         content: process.env.npm_package_description || '',
       },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      {
+        rel: 'stylesheet',
+        href:
+          'https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500&display=swap',
+      },
+    ],
   },
   loading: { color: 'red' },
 
-  css: ['element-ui/lib/theme-chalk/index.css'],
+  css: ['element-ui/lib/theme-chalk/index.css', '@/assets/styles/main.scss'],
 
   plugins: ['@/plugins/globals'],
 
   components: true,
 
-  buildModules: ['@nuxtjs/eslint-module'],
+  buildModules: ['@nuxtjs/eslint-module', '@nuxtjs/style-resources'],
 
   modules: ['@nuxtjs/axios'],
 
   axios: {},
+
+  styleResources: {
+    scss: ['@/assets/styles/main.scss'],
+  },
 
   build: {
     transpile: [/^element-ui/],
