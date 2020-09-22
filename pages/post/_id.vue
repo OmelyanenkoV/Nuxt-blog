@@ -44,14 +44,22 @@
         voluptatem soluta? Aliquid dolorum et tempora.
       </p>
     </main>
-    <footer></footer>
+    <footer class="post-id__footer">
+      <div v-if="false" class="post-id__footer__comments">
+        <app-comment v-for="comment of 4" :key="comment" :comment="comment" />
+      </div>
+      <div v-else class="tc">Комментариев нет</div>
+    </footer>
   </div>
 </template>
 
 <script>
+import AppComment from '@/components/main/Comment'
 export default {
   name: 'PostId',
-  components: {},
+  components: {
+    AppComment,
+  },
   validate({ params }) {
     return Boolean(params.id)
   },
@@ -81,6 +89,9 @@ export default {
         width: 100%;
       }
     }
+  }
+  &__main {
+    margin-bottom: 1.5rem;
   }
 }
 </style>
