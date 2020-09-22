@@ -45,6 +45,9 @@
       </p>
     </main>
     <footer class="post-id__footer">
+      <div class="post_id__footer__form">
+        <app-comment-form />
+      </div>
       <div v-if="false" class="post-id__footer__comments">
         <app-comment v-for="comment of 4" :key="comment" :comment="comment" />
       </div>
@@ -55,10 +58,12 @@
 
 <script>
 import AppComment from '@/components/main/Comment'
+import AppCommentForm from '@/components/main/CommentForm'
 export default {
   name: 'PostId',
   components: {
     AppComment,
+    AppCommentForm,
   },
   validate({ params }) {
     return Boolean(params.id)
@@ -91,7 +96,7 @@ export default {
     }
   }
   &__main {
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
   }
 }
 </style>
