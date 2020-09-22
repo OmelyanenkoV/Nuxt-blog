@@ -18,7 +18,7 @@
       />
     </el-form-item>
     <el-form-item>
-      <el-button type="primary" round native-type="submit"
+      <el-button type="primary" :loading="loading" round native-type="submit"
         >Добавить комментарий</el-button
       >
     </el-form-item>
@@ -31,6 +31,7 @@ export default {
   components: {},
   data() {
     return {
+      loading: false,
       controls: {
         name: '',
         text: '',
@@ -57,7 +58,22 @@ export default {
     onSubmit() {
       this.$refs.form.validate((valid) => {
         if (valid) {
-          console.log('valid')
+          this.loading = true
+
+          const formData = {
+            name: this.controls.name,
+            text: this.controls.text,
+            postId: '',
+          }
+          console.log(formData)
+          try {
+            setTimeout(() => {
+              this.$message.success('Комментарий добавлен')
+              this.$emit('created')
+            }, 2000)
+          } catch (e) {
+            this.loading = false
+          }
         }
       })
     },

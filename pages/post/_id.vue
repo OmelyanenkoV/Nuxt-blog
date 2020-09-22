@@ -46,7 +46,10 @@
     </main>
     <footer class="post-id__footer">
       <div class="post_id__footer__form">
-        <app-comment-form />
+        <app-comment-form
+          v-if="canAddComment"
+          @created="createCommentHandler"
+        />
       </div>
       <div v-if="false" class="post-id__footer__comments">
         <app-comment v-for="comment of 4" :key="comment" :comment="comment" />
@@ -67,6 +70,16 @@ export default {
   },
   validate({ params }) {
     return Boolean(params.id)
+  },
+  data() {
+    return {
+      canAddComment: true,
+    }
+  },
+  methods: {
+    createCommentHandler() {
+      this.canAddComment = false
+    },
   },
 }
 </script>
