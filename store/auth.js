@@ -1,5 +1,5 @@
 export const state = () => ({
-  token: null,
+  token: true,
 })
 
 export const mutations = {
@@ -22,6 +22,11 @@ export const actions = {
       commit('SET_ERROR', e, { root: true })
       throw e
     }
+  },
+  async CREATE_USER({ commit }, formData) {
+    try {
+      await console.log('created user', formData)
+    } catch (e) {}
   },
   SET_TOKEN({ commit }, token) {
     commit('SET_TOKEN', token)
