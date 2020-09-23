@@ -6,6 +6,9 @@ export const mutations = {
   SET_TOKEN(state, token) {
     state.token = token
   },
+  CLEAR_TOKEN(state) {
+    state.token = null
+  },
 }
 
 export const actions = {
@@ -17,6 +20,9 @@ export const actions = {
   },
   SET_TOKEN({ commit }, token) {
     commit('SET_TOKEN', token)
+  },
+  LOGOUT({ commit }) {
+    commit('CLEAR_TOKEN')
   },
 }
 
