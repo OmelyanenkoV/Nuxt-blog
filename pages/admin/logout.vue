@@ -7,6 +7,7 @@ export default {
   name: 'Logout',
   components: {},
   layout: 'empty',
+  middleware: ['admin.auth'],
 }
 </script>
 

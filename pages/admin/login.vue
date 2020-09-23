@@ -59,6 +59,12 @@ export default {
       },
     }
   },
+  mounted() {
+    const { message } = this.$route.query
+    if (message === 'login') {
+      this.$message.info('Для начала войдите в систему')
+    }
+  },
   methods: {
     onSubmit() {
       this.$refs.form.validate(async (valid) => {
@@ -69,7 +75,6 @@ export default {
               login: this.controls.login,
               password: this.controls.password,
             }
-
             await this.$store.dispatch('auth/LOGIN', formData)
             this.$router.push('/admin')
           } catch (e) {

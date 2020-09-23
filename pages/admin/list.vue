@@ -7,6 +7,7 @@ export default {
   name: 'List',
   components: {},
   layout: 'admin',
+  middleware: ['admin.auth'],
 }
 </script>
 

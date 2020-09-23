@@ -9,6 +9,7 @@ export default {
   name: 'AdminPage',
   components: {},
   layout: 'admin',
+  middleware: ['admin.auth'],
 }
 </script>
 
