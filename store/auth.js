@@ -13,10 +13,15 @@ export const mutations = {
 
 export const actions = {
   async LOGIN({ commit, dispatch }, formData) {
-    const token = await new Promise((resolve) => {
-      setTimeout(() => resolve('mock-token'), 2000)
-    })
-    dispatch('SET_TOKEN', token)
+    try {
+      const token = await new Promise((resolve, reject) => {
+        setTimeout(() => resolve('mock-token'), 1000)
+      })
+      dispatch('SET_TOKEN', token)
+    } catch (e) {
+      commit('SET_ERROR', e, { root: true })
+      throw e
+    }
   },
   SET_TOKEN({ commit }, token) {
     commit('SET_TOKEN', token)

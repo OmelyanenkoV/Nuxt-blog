@@ -8,6 +8,16 @@
 export default {
   name: 'EmptyLayout',
   components: {},
+  computed: {
+    error() {
+      return this.$store.getters.ERROR
+    },
+  },
+  watch: {
+    error(value) {
+      this.$message.error(value)
+    },
+  },
 }
 </script>
 
