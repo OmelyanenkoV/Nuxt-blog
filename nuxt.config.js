@@ -23,7 +23,7 @@ export default {
       },
     ],
   },
-  loading: { color: 'red' },
+  loading: { color: '#409EFF' },
 
   css: ['element-ui/lib/theme-chalk/index.css', '@/assets/styles/main.scss'],
 

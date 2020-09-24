@@ -61,7 +61,6 @@ export default {
   },
   mounted() {
     const { message } = this.$route.query
-
     switch (message) {
       case 'login':
         this.$message.info('Для начала войдите в систему')

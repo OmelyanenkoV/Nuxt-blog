@@ -2,7 +2,7 @@
   <div class="admin-layout">
     <el-container :style="{ height: '100%' }">
       <el-aside width="250px"><app-aside /></el-aside>
-      <el-main><Nuxt /></el-main>
+      <el-main :style="{ padding: '20px' }"><Nuxt /></el-main>
     </el-container>
   </div>
 </template>
