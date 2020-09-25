@@ -25,6 +25,13 @@ export const actions = {
   },
   async REMOVE({}, id) {},
   async UPDATE({}, { id, text }) {},
+  async CREATE({}, { title, text }) {
+    return await new Promise((resolve) => {
+      setTimeout(() => {
+        resolve()
+      }, 1000)
+    })
+  },
   async FETCH_ADMIN_BY_ID({}, id) {
     return await new Promise((resolve) => {
       setTimeout(() => {
