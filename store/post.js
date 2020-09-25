@@ -25,12 +25,21 @@ export const actions = {
   },
   async REMOVE({}, id) {},
   async UPDATE({}, { id, text }) {},
-  async CREATE({}, { title, text }) {
-    return await new Promise((resolve) => {
-      setTimeout(() => {
-        resolve()
-      }, 1000)
-    })
+  async CREATE({ commit }, { title, text, image }) {
+    try {
+      const fd = new FormData()
+      fd.append('title', title)
+      fd.append('text', text)
+      fd.append('image', image, image.name)
+      return await new Promise((resolve) => {
+        setTimeout(() => {
+          resolve()
+        }, 1000)
+      })
+    } catch (e) {
+      commit('setError', e, { root: true })
+      throw e
+    }
   },
   async FETCH_ADMIN_BY_ID({}, id) {
     return await new Promise((resolve) => {

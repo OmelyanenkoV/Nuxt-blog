@@ -22,6 +22,24 @@
           :rows="10"
         />
       </el-form-item>
+
+      <el-upload
+        class="mb-2"
+        drag
+        ref="upload"
+        action="https://jsonplaceholder.typicode.com/posts/"
+        :on-change="handleImageChange"
+        :auto-upload="false"
+      >
+        <i class="el-icon-upload"></i>
+        <div class="el-upload__text">
+          Перетащите картинку или <em>нажмите для загрузки</em>
+        </div>
+        <div class="el-upload__tip">
+          Файлы с расширением jpg/png и не больше 500kb
+        </div>
+      </el-upload>
+
       <el-button class="mb-2" type="info" round @click="peviewDialog = true"
         >Предпросмотр</el-button
       >
@@ -49,6 +67,7 @@ export default {
     return {
       peviewDialog: false,
       loading: false,
+      image: null,
       controls: {
         title: '',
         text: '',
@@ -74,23 +93,31 @@ export default {
   methods: {
     onSubmit() {
       this.$refs.form.validate(async (valid) => {
-        if (valid) {
+        if (valid && this.image) {
           this.loading = true
           const formData = {
             title: (this.controls.title = this.controls.title.trim()),
             text: (this.controls.text = this.controls.text.trim()),
+            image: this.image,
           }
           console.log(formData)
           try {
             await this.$store.dispatch('post/CREATE', formData)
             this.controls.title = this.controls.text = ''
+            this.image = null
+            this.$refs.upload.clearFiles()
             this.$message.success('Пост успешно создан')
             this.loading = false
           } catch (e) {
             this.loading = false
           }
+        } else {
+          this.$message.warning('Заполните поля и загрузите картинку')
         }
       })
+    },
+    handleImageChange(file, fileList) {
+      this.image = file.raw
     },
   },
 }
