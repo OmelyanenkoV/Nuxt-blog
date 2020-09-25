@@ -24,20 +24,18 @@
       </el-form-item>
 
       <el-upload
+        ref="upload"
         class="mb-2"
         drag
-        ref="upload"
         action="https://jsonplaceholder.typicode.com/posts/"
         :on-change="handleImageChange"
         :auto-upload="false"
       >
         <i class="el-icon-upload"></i>
-        <div class="el-upload__text">
+        <div class="el-upload__text mb-1">
           Перетащите картинку или <em>нажмите для загрузки</em>
         </div>
-        <div class="el-upload__tip">
-          Файлы с расширением jpg/png и не больше 500kb
-        </div>
+        <div class="el-upload__tip">Файлы с расширением jpg/png</div>
       </el-upload>
 
       <el-button class="mb-2" type="info" round @click="peviewDialog = true"
