@@ -20,5 +20,6 @@ module.exports = {
     'no-console': 'off',
     'no-debugger': 'off',
     'no-empty-pattern': 'off',
+    // 'no-unused-vars': 'off',
   },
 }
