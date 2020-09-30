@@ -47,4 +47,4 @@ router.get('/:id', ctr.getById)
 
 router.put('/:id', ctr.addView)
 
-router.module.exports = router
+module.exports = router

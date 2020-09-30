@@ -7,6 +7,7 @@ const passport = require('passport')
 // routes
 const authRoutes = require('./routes/auth.routes')
 const postRoutes = require('./routes/post.routes')
+const commentRoutes = require('./routes/comment.routes')
 
 const keys = require('./keys')
 const passportStrategy = require('./middleware/passport-strategy')
@@ -26,5 +27,6 @@ app.use(cors())
 
 app.use('/api/auth', authRoutes)
 app.use('/api/post', postRoutes)
+app.use('/api/comment', commentRoutes)
 
 module.exports = app
