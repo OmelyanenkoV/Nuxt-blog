@@ -6,15 +6,13 @@ export const state = () => ({
 
 export const mutations = {
   SET_ERROR(state, error) {
-    state.error = error
+    state.error = String(error)
   },
   CLEAR_ERROR(state) {
     state.error = null
   },
 }
 export const getters = {
-  ERROR: (state) => {
-    return state.error
-  },
+  ERROR: (state) => state.error,
 }
 export const actions = {}

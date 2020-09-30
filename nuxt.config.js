@@ -38,9 +38,6 @@ export default {
   styleResources: {
     scss: ['@/assets/styles/main.scss'],
   },
-  // serverMiddleware: {
-  //   '/api': '~/api',
-  // },
   serverMiddleware: [{ path: '/api', handler: '~/api' }],
 
   build: {

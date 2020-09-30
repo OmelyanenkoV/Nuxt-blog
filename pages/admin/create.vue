@@ -98,7 +98,6 @@ export default {
             text: (this.controls.text = this.controls.text.trim()),
             image: this.image,
           }
-          console.log(formData)
           try {
             await this.$store.dispatch('post/CREATE', formData)
             this.controls.title = this.controls.text = ''
