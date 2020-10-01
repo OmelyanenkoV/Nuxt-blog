@@ -25,7 +25,7 @@ export default {
 
   css: ['element-ui/lib/theme-chalk/index.css', '@/assets/styles/main.scss'],
 
-  plugins: ['@/plugins/globals'],
+  plugins: ['@/plugins/globals', '@/plugins/axios'],
 
   components: true,
 
