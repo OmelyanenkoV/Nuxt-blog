@@ -1,3 +1,7 @@
+import cookie from 'cookie'
+import JsCookies from 'js-cookie'
+import jwtDecode from 'jwt-decode'
+
 export const state = () => ({
   token: null,
 })
@@ -35,11 +39,29 @@ export const actions = {
       throw e
     }
   },
+  AUTO_LOGIN({ dispatch }) {
+    const coocieStr = process.browser
+      ? document.cookie
+      : this.app.context.req.headers.cookie
+
+    const cookies = cookie.parse(coocieStr || '') || {}
+    const token = cookies['jwt-token']
+
+    if (isJWTValid(token)) {
+      dispatch('SET_TOKEN', token)
+    } else {
+      dispatch('LOGOUT')
+    }
+  },
   SET_TOKEN({ commit }, token) {
+    // this.$axios.SET_TOKEN(token, 'Bearer')
     commit('SET_TOKEN', token)
+    JsCookies.set('jwt-token', token)
   },
   LOGOUT({ commit }) {
+    // this.$axios.SET_TOKEN(false)
     commit('CLEAR_TOKEN')
+    JsCookies.remove('jwt-token')
   },
 }
 
@@ -48,4 +70,14 @@ export const getters = {
     return Boolean(state.token)
   },
   token: (state) => state.token,
+}
+
+function isJWTValid(token) {
+  if (!token) {
+    return false
+  }
+  const jwtData = jwtDecode(token) || {}
+  const expires = jwtData.exp || 0
+
+  return new Date().getTime() / 1000 < expires
 }
