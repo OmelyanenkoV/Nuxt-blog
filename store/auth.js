@@ -47,4 +47,5 @@ export const getters = {
   isAuthenticated: (state) => {
     return Boolean(state.token)
   },
+  token: (state) => state.token,
 }
