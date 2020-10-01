@@ -14,6 +14,16 @@ export default {
   components: {
     AppAside,
   },
+  computed: {
+    error() {
+      return this.$store.getters.ERROR
+    },
+  },
+  watch: {
+    error(value) {
+      this.$message.error(value.response.data.message)
+    },
+  },
 }
 </script>
 
