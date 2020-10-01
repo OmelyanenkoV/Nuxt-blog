@@ -1,5 +1,6 @@
 const { Router } = require('express')
 const router = Router()
+const passport = require('passport')
 
 const { login, createUser } = require('../controllers/auth.controller')
 
@@ -7,6 +8,10 @@ const { login, createUser } = require('../controllers/auth.controller')
 router.post('/admin/login', login)
 
 // http://localhost:3001/api/auth/admin/create
-router.post('/admin/create', createUser)
+router.post(
+  '/admin/create',
+  passport.authenticate('jwt', { session: false }),
+  createUser
+)
 
 module.exports = router
