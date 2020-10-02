@@ -38,7 +38,7 @@ export default {
   styleResources: {
     scss: ['@/assets/styles/main.scss'],
   },
-  serverMiddleware: [{ path: '/api', handler: '~/api' }],
+  // serverMiddleware: [{ path: '/api', handler: '~/api' }],
 
   build: {
     transpile: [/^element-ui/],

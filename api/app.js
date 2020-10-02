@@ -15,7 +15,12 @@ const passportStrategy = require('./middleware/passport-strategy')
 const app = express()
 
 mongoose
-  .connect(keys.MONGO_URI, { useUnifiedTopology: true, useNewUrlParser: true })
+  .connect(keys.MONGO_URI, {
+    useUnifiedTopology: true,
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+  })
   .then(() => console.log('MongoDB connected....'))
   .catch((error) => console.error(error))
 

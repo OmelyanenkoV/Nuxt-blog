@@ -17,7 +17,7 @@
         class="mb-1"
       >
         <el-input
-          v-model.trim="controls.text"
+          v-model="controls.text"
           type="textarea"
           resize="none"
           :rows="10"
@@ -73,6 +73,9 @@ export default {
       },
     }
   },
+  mounted() {
+    this.controls.text = this.post.text
+  },
   methods: {
     onSubmit() {
       this.$refs.form.validate(async (valid) => {
@@ -80,12 +83,13 @@ export default {
           this.loading = true
           const formData = {
             text: this.controls.text,
-            id: this.post.id,
+            id: this.post._id,
           }
           try {
             await this.$store.dispatch('post/UPDATE', formData)
             this.$message.success('Пост успешно обновлен')
             this.loading = false
+            this.$router.push('/admin/list')
           } catch (e) {
             this.loading = false
           }
