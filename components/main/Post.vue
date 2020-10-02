@@ -1,24 +1,20 @@
 <template>
   <el-card class="post" shadow="hover" :body-style="{ padding: '0px' }">
     <header slot="header" class="post__header">
-      <h3>Post title</h3>
+      <h3>{{ post.title }}</h3>
       <small>
         <i class="el-icon-date"></i>
-        {{ new Date().toLocaleString() }}
+        {{ new Date(post.date).toLocaleString() }}
       </small>
     </header>
     <div class="post__body">
-      <img
-        src="https://img-a.udemycdn.com/course/750x422/982344_7cfa_2.jpg"
-        alt="post image"
-        class="post__body__img"
-      />
+      <img :src="post.imageUrl" alt="post image" class="post__body__img" />
     </div>
     <footer class="post__footer">
       <el-button round @click="openPost">Открыть пост</el-button>
       <span>
         <i class="el-icon-s-comment"></i>
-        24
+        {{ post.comments.length }}
       </span>
     </footer>
   </el-card>
@@ -26,11 +22,15 @@
 
 <script>
 export default {
-  name: 'Post',
-  components: {},
+  props: {
+    post: {
+      type: Object,
+      required: true,
+    },
+  },
   methods: {
     openPost() {
-      const id = 'test-id'
+      const id = this.post._id
       this.$router.push(`/post/${id}`)
     },
   },

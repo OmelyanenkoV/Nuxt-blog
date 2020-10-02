@@ -2,7 +2,7 @@
   <div class="post-id">
     <header class="post-id__header">
       <div class="post-id__header__title">
-        <h1>Post title</h1>
+        <h1>{{ post.title }}</h1>
         <nuxt-link to="/">
           <i class="el-icon-back"></i>
         </nuxt-link>
@@ -10,39 +10,19 @@
       <div class="post-id__header__info">
         <small>
           <i class="el-icon-date"></i>
-          {{ new Date().toLocaleString() }}
+          {{ new Date(post.date).toLocaleString() }}
         </small>
         <small>
           <i class="el-icon-view"></i>
-          42
+          {{ post.views }}
         </small>
       </div>
       <div class="post-id__header__img">
-        <img
-          src="https://img-a.udemycdn.com/course/750x422/982344_7cfa_2.jpg"
-          alt="post img"
-        />
+        <img :src="post.imageUrl" alt="post img" />
       </div>
     </header>
     <main class="post-id__main">
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis ut cum vel
-        quisquam obcaecati assumenda accusamus laudantium pariatur amet corrupti
-        neque dolore quasi reiciendis dolorem molestias commodi id, placeat
-        voluptatem soluta? Aliquid dolorum et tempora.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis ut cum vel
-        quisquam obcaecati assumenda accusamus laudantium pariatur amet corrupti
-        neque dolore quasi reiciendis dolorem molestias commodi id, placeat
-        voluptatem soluta? Aliquid dolorum et tempora.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis ut cum vel
-        quisquam obcaecati assumenda accusamus laudantium pariatur amet corrupti
-        neque dolore quasi reiciendis dolorem molestias commodi id, placeat
-        voluptatem soluta? Aliquid dolorum et tempora.
-      </p>
+      <vue-markdown> {{ post.text }}</vue-markdown>
     </main>
     <footer class="post-id__footer">
       <div class="post_id__footer__form">
@@ -51,7 +31,7 @@
           @created="createCommentHandler"
         />
       </div>
-      <div v-if="false" class="post-id__footer__comments">
+      <div v-if="post.comments.length" class="post-id__footer__comments">
         <app-comment v-for="comment of 4" :key="comment" :comment="comment" />
       </div>
       <div v-else class="tc">Комментариев нет</div>
@@ -70,6 +50,13 @@ export default {
   },
   validate({ params }) {
     return Boolean(params.id)
+  },
+  async asyncData({ store, params }) {
+    const post = await store.dispatch('post/FETCH_BY_ID', params.id)
+    await store.dispatch('post/ADD_VIEW', post)
+    return {
+      post: { ...post, views: post.views++ },
+    }
   },
   data() {
     return {
