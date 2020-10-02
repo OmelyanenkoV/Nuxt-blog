@@ -34,7 +34,7 @@
               type="primary"
               icon="el-icon-edit"
               circle
-              @click="edit(row.id)"
+              @click="edit(row._id)"
             />
           </el-tooltip>
           <el-tooltip placement="top" effect="light">
@@ -43,7 +43,7 @@
               type="danger"
               icon="el-icon-delete"
               circle
-              @click="remove(row.id)"
+              @click="remove(row._id)"
             />
           </el-tooltip>
         </template>
@@ -74,7 +74,7 @@ export default {
           type: 'warning',
         })
         await this.$store.dispatch('post/REMOVE', id)
-        this.posts = this.posts.filter((p) => p.id !== id)
+        this.posts = this.posts.filter((p) => p._id !== id)
         this.$message.success('Пост успешно удален')
       } catch (e) {}
     },
