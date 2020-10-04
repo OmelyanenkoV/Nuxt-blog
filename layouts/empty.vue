@@ -1,6 +1,10 @@
 <template>
   <div class="empty-layout">
     <Nuxt />
+    <el-tooltip placement="top" effect="light">
+      <div slot="content">На главную страницу</div>
+      <nuxt-link class="home" to="/"><i class="el-icon-house"></i></nuxt-link>
+    </el-tooltip>
   </div>
 </template>
 
@@ -27,5 +31,11 @@ export default {
   justify-content: center;
   width: 100%;
   padding-top: 4rem;
+}
+.home {
+  position: fixed;
+  right: 36px;
+  top: 10px;
+  font-size: 30px;
 }
 </style>
