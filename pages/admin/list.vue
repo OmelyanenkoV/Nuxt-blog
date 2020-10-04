@@ -6,9 +6,9 @@
       <el-table-column label="Дата" width="180">
         <template slot-scope="{ row: { date } }">
           <i class="el-icon-time"></i>
-          <span style="margin-left: 10px">{{
-            new Date(date).toLocaleDateString()
-          }}</span>
+          <span style="margin-left: 10px">
+            {{ date | date('date') }}
+          </span>
         </template>
       </el-table-column>
 

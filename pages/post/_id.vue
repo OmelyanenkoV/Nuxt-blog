@@ -10,7 +10,7 @@
       <div class="post-id__header__info">
         <small>
           <i class="el-icon-date"></i>
-          {{ new Date(post.date).toLocaleString() }}
+          {{ post.date | date }}
         </small>
         <small>
           <i class="el-icon-view"></i>
