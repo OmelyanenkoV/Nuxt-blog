@@ -38,6 +38,12 @@ router.delete(
   ctr.remove
 )
 
+router.get(
+  '/admin/get/analytics',
+  passport.authenticate('jwt', { session: false }),
+  ctr.getAnalytics
+)
+
 // Base
 // http://localhost:3001/api/post
 
