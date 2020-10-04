@@ -34,11 +34,12 @@ export default {
   modules: ['@nuxtjs/axios'],
 
   axios: {},
-
+  env: {
+    appName: 'SSR blog',
+  },
   styleResources: {
     scss: ['@/assets/styles/main.scss'],
   },
-  // serverMiddleware: [{ path: '/api', handler: '~/api' }],
 
   build: {
     transpile: [/^element-ui/],

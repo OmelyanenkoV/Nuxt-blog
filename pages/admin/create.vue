@@ -61,6 +61,7 @@ export default {
   components: {},
   layout: 'admin',
   middleware: ['admin.auth'],
+
   data() {
     return {
       peviewDialog: false,
@@ -116,6 +117,9 @@ export default {
     handleImageChange(file, fileList) {
       this.image = file.raw
     },
+  },
+  head: {
+    title: `Создать | ${process.env.appName}`,
   },
 }
 </script>

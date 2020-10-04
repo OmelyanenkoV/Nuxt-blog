@@ -81,6 +81,9 @@ export default {
       })
     },
   },
+  head: {
+    title: `Пользователи | ${process.env.appName}`,
+  },
 }
 </script>
 

@@ -52,10 +52,12 @@ export default {
   },
   layout: 'admin',
   middleware: ['admin.auth'],
+
   async asyncData({ store, params }) {
     const post = await store.dispatch('post/FETCH_ADMIN_BY_ID', params.id)
     return { post }
   },
+
   data() {
     return {
       loading: false,
@@ -99,7 +101,7 @@ export default {
   },
   head() {
     return {
-      title: `Пост | ${this.post.title}`,
+      title: `${this.post.title} | ${process.env.appName}`,
     }
   },
 }

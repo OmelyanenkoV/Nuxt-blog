@@ -79,6 +79,9 @@ export default {
       } catch (e) {}
     },
   },
+  head: {
+    title: `Посты | ${process.env.appName}`,
+  },
 }
 </script>
 

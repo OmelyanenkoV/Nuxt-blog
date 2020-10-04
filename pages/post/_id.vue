@@ -56,6 +56,7 @@ export default {
   validate({ params }) {
     return Boolean(params.id)
   },
+
   async asyncData({ store, params }) {
     const post = await store.dispatch('post/FETCH_BY_ID', params.id)
     await store.dispatch('post/ADD_VIEW', post)
@@ -73,6 +74,11 @@ export default {
       this.post.comments.unshift(comment)
       this.canAddComment = false
     },
+  },
+  head() {
+    return {
+      title: `${this.post.title} | ${process.env.appName}`,
+    }
   },
 }
 </script>

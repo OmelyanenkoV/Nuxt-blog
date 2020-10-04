@@ -26,6 +26,9 @@ export default {
     return { views, comments }
   },
   middleware: ['admin.auth'],
+  head: {
+    title: `Аналитика | ${process.env.appName}`,
+  },
 }
 </script>
 
