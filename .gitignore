@@ -88,6 +88,3 @@ sw.*
 
 # Vim swap files
 *.swp
-
-# password.DB
-/api/keys/db.password.js
